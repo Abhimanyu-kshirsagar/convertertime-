@@ -1,0 +1,28 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+
+public class TimeConverter {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the time in 12-hour format (HH:mm:ss AM/PM): ");
+        String timeString = scanner.nextLine();
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
+
+        try {
+            // Parse the input time
+            java.util.Date time = inputFormat.parse(timeString);
+
+            // Convert to 24-hour format
+            String militaryTime = outputFormat.format(time);
+
+            System.out.println("Converted time in 24-hour format: " + militaryTime);
+        } catch (ParseException e) {
+            System.err.println("Invalid time format. Please enter the time in the specified format.");
+        }
+    }
+}
